@@ -1,127 +1,60 @@
 # Engineers Fortune Cookie 🥠
 
-A simple Flask web app that serves a random engineering wisdom on every refresh. Great for internal team dashboards, office screens, or a moment of reflection between deploys.
+A static site that shows a random fortune on every page load. Great for internal team dashboards, office screens, or a moment of reflection between deploys.
 
----
-
-## Quick Start
-
-### 1. Clone / navigate to the app folder
-
-```bash
-cd apps/engineers-fortune-cookie
-```
-
-### 2. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Run the app
-
-```bash
-python app.py
-```
-
-Open your browser at **http://localhost:5000**
-
-Refresh the page to crack a new fortune cookie.
+Live on GitHub Pages. The browser picks the fortune, so there is no server.
 
 ---
 
 ## Project Structure
 
 ```
-engineers-fortune-cookie/
-├── app.py              # Flask app
-├── fortunes.txt        # One fortune per line
-├── requirements.txt    # Python dependencies
-└── templates/
-    └── index.html      # Front-end page
+├── engineering-fortunes.txt   # Source: engineering fortunes (one per line)
+├── general-fortunes.txt       # Source: general fortunes (optional "N→" prefix is stripped)
+├── lawyer-fortunes.txt        # Source: lawyer fortunes
+├── build_pages.py             # Copies the source files into docs/fortunes/
+└── docs/                      # The GitHub Pages site
+    ├── index.html
+    ├── .nojekyll
+    └── fortunes/              # Generated copies, do not edit by hand
 ```
 
 ---
 
-## Adding Your Own Fortunes
+## Adding or Editing Fortunes
 
-Open `fortunes.txt` and add a new line for each saying. No restarts needed — fortunes are loaded fresh on every request.
-
-```
-Your refactor will break things — but more cleanly.
-The spec is vague. Your interpretation will be wrong.
-Your own saying goes here.
-```
-
----
-
-## Hosting on GitHub Pages (Public)
-
-The Flask app can't run on GitHub Pages (it's static hosting only), so `docs/` contains a static version of the same site. The browser picks a random fortune on each page load, reading the text files in `docs/fortunes/`.
-
-1. Edit the fortune files at the top level (`engineering-fortunes.txt`, `general-fortunes.txt`, `lawyer-fortunes.txt`).
-2. Copy them into the Pages folder:
+1. Edit the top-level `*-fortunes.txt` file for the mode you want. One fortune per line.
+2. Sync them into the Pages folder:
    ```bash
-   python build_pages.py
+   python3 build_pages.py
    ```
-3. Commit and push. Then in the repo: **Settings → Pages → Build and deployment → Deploy from a branch**, branch `main`, folder `/docs`.
+3. Commit and push.
 
-Preview locally before pushing:
+---
+
+## Deploying to GitHub Pages
+
+One-time setup: **Settings → Pages → Build and deployment → Deploy from a branch**, branch `main`, folder `/docs`.
+
+After that, every push to `main` updates the site.
+
+## Preview Locally
 
 ```bash
-python -m http.server 8000 --directory docs
+python3 -m http.server 8000 --directory docs
 # open http://localhost:8000
 ```
 
-Pages URLs: `/` (engineers), `/?mode=general`, `/?mode=lawyer`.
+## Modes
 
----
-
-## Hosting on AWS (Internal Access)
-
-See the full step-by-step guide in the main repository README, or follow the summary below.
-
-### Deploy to EC2
-
-```bash
-# On the EC2 instance
-pip install flask gunicorn
-
-# Copy app files to the instance, then run:
-gunicorn -w 2 -b 0.0.0.0:5000 app:app
-```
-
-### Run as a background service
-
-Create `/etc/systemd/system/fortune.service`:
-
-```ini
-[Unit]
-Description=Engineers Fortune Cookie
-After=network.target
-
-[Service]
-User=ec2-user
-WorkingDirectory=/home/ec2-user/fortune-cookie
-ExecStart=/home/ec2-user/.local/bin/gunicorn -w 2 -b 0.0.0.0:5000 app:app
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-```
-
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable fortune --now
-```
-
-### Restrict access
-
-In your EC2 Security Group, allow inbound TCP port `5000` only from your office or VPN IP range — do not open it to `0.0.0.0/0`.
+| URL | Fortunes |
+| --- | --- |
+| `/` | Engineers (default) |
+| `/?mode=general` | General |
+| `/?mode=lawyer` | Lawyers |
 
 ---
 
 ## Requirements
 
-- Python 3.8+
-- Flask
+- Python 3 (only for `build_pages.py`, standard library only)
