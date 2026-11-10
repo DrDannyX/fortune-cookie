@@ -1,0 +1,80 @@
+It works on my machine. Ship the machine.
+The best code is no code at all.
+A bug is just an undocumented feature.
+Documentation is a love letter to your future self.
+There are only two hard things in computer science: cache invalidation, naming things, and off-by-one errors.
+Any fool can write code that a computer can understand. Good programmers write code that humans can understand.
+First, solve the problem. Then, write the code.
+The most dangerous phrase in engineering is "we've always done it this way."
+Weeks of coding can save you hours of planning.
+Make it work, make it right, make it fast — in that order.
+Technical debt is like a payday loan: convenient now, painful later.
+The best time to refactor was yesterday. The second best time is now.
+A good engineer knows the rules. A great engineer knows when to break them.
+Premature optimisation is the root of all evil.
+Every great engineer was once a beginner who refused to give up.
+The quieter you become, the more you can hear the compiler.
+Simplicity is the soul of efficiency.
+If debugging is the process of removing software bugs, then programming must be the process of putting them in.
+Version control is your time machine. Commit often.
+The user will always find the one thing you didn't test.
+Your hypothesis will be correct… for very specific values of “correct.”
+An unexpected result is just a future paper in disguise.
+You will soon derive an equation no one asked for — but everyone will use.
+The data is trying to tell you something. You will ignore it at first.
+Your experiment will work immediately after the deadline passes.
+Correlation will smile at you. Causation will ghost you.
+An elegant solution exists. You will choose the practical one instead.
+You will spend three hours optimizing something no human will notice.
+The error bars are large, but your confidence will be larger.
+Today’s “temporary workaround” will become tomorrow’s standard.
+A missing semicolon will lead you on a great journey of self-reflection.
+You will fix a bug by deleting code you wrote with confidence.
+Your code will compile on the second try. You will not know why.
+A TODO comment will outlive its creator.
+The bug is not where you are looking. It is laughing somewhere else.
+You will Google the error message and find your own Stack Overflow post.
+A dependency update will bring “minor breaking changes.”
+Your refactor will break things — but more cleanly.
+It works on your machine. The universe will disagree.
+Future you will ask, “Who wrote this?” Past you silently leaves the room.
+You will solve the problem five minutes after asking for help.
+The test passes. The feature still doesn’t work.
+You will name a variable perfectly… for a different problem.
+You will over-engineer a solution to save five minutes.
+The spec is vague. Your interpretation will be wrong.
+You will build something robust, scalable, and slightly incorrect.
+An edge case will remind you it exists at the worst possible moment.
+Your system will fail in a way no one tested for — including you.
+The prototype will impress everyone and haunt you forever.
+You will add logging. It will reveal the wrong problem.
+You are closer than you think. Unfortunately, “think” is the issue.
+A breakthrough approaches. So does technical debt.
+You will achieve clarity shortly after making a decision.
+The answer is simple, just not today.
+Great complexity can be hidden behind a very calm commit message.
+You will fix the bug by restarting the kernel.
+The code was correct. The indentation was not.
+You will debug for an hour before noticing you ran the wrong file.
+A list comprehension will make this elegant. It will also make it unreadable.
+The off-by-one error respects no Python version.
+You will forget to call the function you just wrote.
+Your variable named data will contain everything except data.
+It ran without errors. That was the first warning sign.
+You will shadow a built-in and regret it later.
+The virtual environment was activated. Just not this one.
+One print statement will save the day. Five more will follow.
+The bug disappears when you add logging.
+You will trust a default argument. It will betray you.
+A quick script will quietly become a production tool.
+You will mix tabs and spaces and question reality.
+The pandas operation is fast. The data loading is not.
+You will write a regex. No one will understand it, including you.
+The exception message is clear. The cause is not.
+You will refactor into functions. Global state will reappear anyway.
+The requirements file knows more than you do.
+You will assume the object is iterable. It is not.
+The type hints look correct. Runtime disagrees.
+You will solve it with Pythonic elegance at 2am.
+The notebook works perfectly until you rerun all cells.
+You will forget to save. Autosave will remember too late.

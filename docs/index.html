@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineers Fortune Cookie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fde8f0, #e8d5f5, #d5e8f5, #d5f5e8);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+            font-family: 'Georgia', serif;
+        }
+
+        @keyframes gradientShift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            border-radius: 24px;
+            padding: 60px 72px;
+            max-width: 820px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.10);
+        }
+
+        .cookie-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+            display: block;
+            animation: wobble 2s ease-in-out infinite;
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: rotate(-4deg); }
+            50%       { transform: rotate(4deg); }
+        }
+
+        h1 {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: #9b8ea8;
+            margin-bottom: 36px;
+        }
+
+        .fortune {
+            font-size: 2.2rem;
+            line-height: 1.55;
+            color: #3d3350;
+            font-style: italic;
+            margin-bottom: 48px;
+            min-height: 3em;
+        }
+
+        .fortune::before { content: '\201C'; }
+        .fortune::after  { content: '\201D'; }
+
+        .refresh-btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #c9a0dc, #a0c4dc);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            font-family: 'Georgia', serif;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            box-shadow: 0 4px 18px rgba(160, 130, 200, 0.35);
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(160, 130, 200, 0.5);
+        }
+
+        .refresh-btn:active {
+            transform: translateY(0);
+        }
+
+        .bottom-right {
+            position: fixed;
+            bottom: 24px;
+            right: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mode-select {
+            appearance: none;
+            -webkit-appearance: none;
+            padding: 8px 34px 8px 16px;
+            background: rgba(255, 255, 255, 0.55)
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239b8ea8'/%3E%3C/svg%3E")
+                no-repeat right 14px center;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #6b5a7a;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            font-family: 'Georgia', serif;
+            border: 1px solid rgba(155, 142, 168, 0.35);
+            cursor: pointer;
+        }
+
+        .mode-select:focus {
+            outline: none;
+            border-color: #c9a0dc;
+        }
+
+        .auto-refresh {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: #9b8ea8;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(155, 142, 168, 0.35);
+            border-radius: 50px;
+            padding: 8px 16px;
+        }
+
+        .auto-refresh label {
+            letter-spacing: 0.04em;
+        }
+
+        .auto-refresh input[type="number"] {
+            width: 48px;
+            padding: 2px 6px;
+            border: 1px solid rgba(155, 142, 168, 0.45);
+            border-radius: 6px;
+            font-family: 'Georgia', serif;
+            font-size: 0.8rem;
+            color: #3d3350;
+            background: rgba(255,255,255,0.7);
+            text-align: center;
+        }
+
+        .auto-refresh input[type="number"]:focus {
+            outline: none;
+            border-color: #c9a0dc;
+        }
+
+        .countdown {
+            font-size: 0.75rem;
+            color: rgba(155, 142, 168, 0.7);
+            letter-spacing: 0.04em;
+            min-width: 64px;
+            text-align: right;
+        }
+
+        @media (max-width: 600px) {
+            .card { padding: 40px 28px; }
+            .fortune { font-size: 1.6rem; }
+            .bottom-right { left: 0; right: 0; align-items: center; bottom: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <span class="cookie-icon">🥠</span>
+        <h1 id="title">Engineers Fortune Cookie</h1>
+        <p class="fortune" id="fortune">Loading…</p>
+        <a href="#" class="refresh-btn" id="refresh">Crack another cookie</a>
+    </div>
+
+    <div class="bottom-right">
+        <div class="controls">
+            <select class="mode-select" id="mode" aria-label="Fortune type"></select>
+            <div class="auto-refresh">
+                <label for="interval">Auto-refresh every</label>
+                <input type="number" id="interval" min="1" value="60">
+                <label for="interval">min</label>
+                <span class="countdown" id="countdown"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Static (GitHub Pages) version of the Flask app.
+        // Fortune files live in ./fortunes/ and are produced by build_pages.py.
+        const MODES = {
+            engineering: { title: 'Engineers Fortune Cookie', file: 'fortunes/engineering.txt', label: 'Engineers Fortune Cookie' },
+            general:     { title: 'Fortune Cookie',           file: 'fortunes/general.txt',     label: 'General Fortune Cookie' },
+            lawyer:      { title: 'Lawyers Fortune Cookie',   file: 'fortunes/lawyer.txt',      label: 'Lawyers Fortune Cookie' },
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const mode = MODES[params.get('mode')] ? params.get('mode') : 'engineering';
+        const cfg = MODES[mode];
+        const pageUrl = (m) => '?mode=' + m;
+
+        const $ = (id) => document.getElementById(id);
+        const fortuneEl = $('fortune');
+        const input = $('interval');
+        const countdown = $('countdown');
+        const KEY = 'fortune_interval_min';
+
+        document.title = cfg.title;
+        $('title').textContent = cfg.title;
+
+        // Mode dropdown: switching navigates to that mode's page
+        const modeSelect = $('mode');
+        for (const [key, m] of Object.entries(MODES)) {
+            const opt = document.createElement('option');
+            opt.value = key;
+            opt.textContent = m.label;
+            opt.selected = key === mode;
+            modeSelect.appendChild(opt);
+        }
+        modeSelect.addEventListener('change', () => {
+            window.location.href = pageUrl(modeSelect.value);
+        });
+
+        $('refresh').href = pageUrl(mode);
+
+        // Load fortunes and pick one at random (each page load = new fortune)
+        fetch(cfg.file, { cache: 'no-cache' })
+            .then((r) => {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.text();
+            })
+            .then((text) => {
+                const lines = text
+                    .split('\n')
+                    .map((l) => l.trim())
+                    .filter(Boolean)
+                    // Mirror app.py: strip a leading "N→" prefix in the general list
+                    .map((l) => (mode === 'general' && l.includes('→')) ? l.split('→').pop().trim() : l);
+                if (!lines.length) throw new Error('no fortunes');
+                fortuneEl.textContent = lines[Math.floor(Math.random() * lines.length)];
+            })
+            .catch((err) => {
+                fortuneEl.textContent = 'Could not load fortunes (' + err.message + ').';
+            });
+
+        // Auto-refresh: reload the page every N minutes
+        function fmt(secs) {
+            const m = Math.floor(secs / 60), s = secs % 60;
+            return m > 0 ? `${m}m ${s.toString().padStart(2, '0')}s` : `${s}s`;
+        }
+
+        let timer, remaining;
+        function start() {
+            clearInterval(timer);
+            const mins = Math.max(1, parseInt(input.value, 10) || 60);
+            input.value = mins;
+            try { localStorage.setItem(KEY, mins); } catch (e) { /* private mode */ }
+            remaining = mins * 60;
+            countdown.textContent = fmt(remaining);
+            timer = setInterval(() => {
+                remaining--;
+                countdown.textContent = fmt(remaining);
+                if (remaining <= 0) window.location.reload();
+            }, 1000);
+        }
+
+        try {
+            const saved = localStorage.getItem(KEY);
+            if (saved) input.value = saved;
+        } catch (e) { /* ignore */ }
+
+        input.addEventListener('change', start);
+        start();
+    </script>
+</body>
+</html>
