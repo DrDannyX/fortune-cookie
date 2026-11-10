@@ -78,3 +78,54 @@ The type hints look correct. Runtime disagrees.
 You will solve it with Pythonic elegance at 2am.
 The notebook works perfectly until you rerun all cells.
 You will forget to save. Autosave will remember too late.
+The flaky test is not flaky. It is telling you the truth intermittently.
+You will merge on Friday afternoon and learn what weekends are for.
+The bug is in the code you were certain was fine.
+A one-line change will require a four-hour review.
+Your rollback plan will be tested sooner than your deploy plan.
+The cache is stale, and so is your understanding of it.
+You will fix the typo in production and introduce a new one.
+The staging environment will agree with you. Production will not.
+You will write a comment explaining why the code is bad instead of fixing it.
+The build is green. The build is lying.
+A race condition will wait until the demo to introduce itself.
+You will estimate two days. The universe will hear two weeks.
+The legacy system works because nobody dares to touch it.
+Your pull request will receive approval from someone who did not read it.
+You will delete the unused function. It was used.
+The config file has a setting for that. You will find it after rewriting it.
+An off-by-one error will teach you humility, one index at a time.
+The database migration will go smoothly right up until it doesn't.
+You will blame the network. It will be DNS.
+The meeting could have been a commit message.
+A well-named function will save a thousand comments.
+You will push to the wrong branch with great confidence.
+The logs are full of information, none of it about your problem.
+Your clever one-liner will need a three-paragraph explanation.
+The service is healthy. The users disagree.
+You will spend a day building a tool to automate a five-minute task.
+The merge conflict is smaller than it looks and worse than it feels.
+A timezone bug is coming. You will not see it until March.
+Your abstraction will leak at the exact layer you hoped to ignore.
+The incident review will conclude that a human made a human mistake.
+Measure twice, deploy once, roll back anyway.
+You will finally understand the old code just as it is replaced.
+The simplest explanation is a typo in an environment variable.
+A feature flag will outlive the feature, the team, and the company.
+You will find the fix in the documentation you skipped yesterday.
+The tests were mocking the very thing that broke.
+Someone's weekend will be improved by your thorough error messages.
+You will say "this should be quick" and summon a dependency upgrade.
+Good naming is the cheapest form of documentation.
+The on-call phone will ring only when you are most comfortable.
+Your sprint will end with one ticket moved to "almost done."
+You will optimise the wrong bottleneck with admirable precision.
+A null will arrive from a place you were promised was impossible.
+The fix is three characters long. Finding it took three days.
+You will rename a variable and break nothing, which is suspicious in itself.
+Read the error message. Then read it again, slowly, like a letter.
+The system you inherited has a reason for everything. You will learn them all.
+Your retry logic will turn a small outage into a large one.
+The postmortem will be kinder than you are to yourself.
+You will ship it. It will be fine. Probably.
+Code reviews are the cheapest bug fixes you will ever buy.
